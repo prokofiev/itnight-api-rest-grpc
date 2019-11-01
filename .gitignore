@@ -1,0 +1,17 @@
+*.iws
+*.iml
+/**/out/
+/**/build/
+/**/target/
+/.idea/
+*.jasper
+/**/*-local.properties
+/**/*-local.yml
+/**/rebel.xml
+.settings
+.project
+.classpath
+.gradle/
+grafana/
+**/lombok.config
+jfr/
