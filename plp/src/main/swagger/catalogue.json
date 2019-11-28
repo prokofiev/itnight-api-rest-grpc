@@ -1,0 +1,235 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "127.0.0.1:8881",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "product-resource",
+      "description": "Product Resource"
+    }
+  ],
+  "paths": {
+    "/product/get/{id}": {
+      "get": {
+        "tags": [
+          "product-resource"
+        ],
+        "summary": "getById",
+        "operationId": "getByIdUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProductDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/getAvailability/{id}": {
+      "get": {
+        "tags": [
+          "product-resource"
+        ],
+        "summary": "getAvailability",
+        "operationId": "getAvailabilityUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AvailabilityDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/getIdListByCategory/{category}": {
+      "get": {
+        "tags": [
+          "product-resource"
+        ],
+        "summary": "getIdListByCategory",
+        "operationId": "getIdListByCategoryUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "category",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/IdListDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/getPrice/{id}": {
+      "get": {
+        "tags": [
+          "product-resource"
+        ],
+        "summary": "getPrice",
+        "operationId": "getPriceUsingGET",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PriceDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "AvailabilityDto": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "title": "AvailabilityDto"
+    },
+    "IdListDto": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "IdListDto"
+    },
+    "PriceDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "PriceDto"
+    },
+    "ProductDto": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ProductDto"
+    }
+  }
+}
