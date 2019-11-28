@@ -1,0 +1,35 @@
+syntax = "proto3";
+package products;
+option java_outer_classname = "ProtoProducts";
+option java_package = "epam.itnight.catalogue.grpc";
+
+message Id {
+  string id = 1;
+}
+
+message IdList {
+  repeated Id ids = 1;
+}
+
+message Product {
+  string id = 1;
+  string category = 2;
+  string name = 3;
+}
+
+message Price {
+  string id = 1;
+  int32 value = 2;
+}
+
+message Availability {
+  string id = 1;
+  int32 available = 2;
+}
+
+service ProductService {
+  rpc FindProductIdList (Id) returns (IdList);
+  rpc FindProductById (Id) returns (Product);
+  rpc GetPrice (Id) returns (Price);
+  rpc GetAvailability (Id) returns (Availability);
+}
