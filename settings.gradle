@@ -1,0 +1,6 @@
+rootProject.name = 'itnight-api'
+
+include(
+        'catalogue',
+        'plp',
+)
