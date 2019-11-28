@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id "io.freefair.lombok" version "4.1.3"
     id("org.openapi.generator") version '4.2.1'
+    id("com.google.protobuf") version "0.8.8"
 }
 
 version = '1.0'
@@ -15,7 +16,8 @@ dependencies {
 
     implementation "org.openapitools:jackson-databind-nullable:0.2.0"
     implementation 'io.swagger:swagger-annotations:1.5.17'
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    implementation "io.grpc:grpc-all:$grpcVersion"
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -44,9 +46,27 @@ openApiGenerate {
 
 compileJava.dependsOn tasks.openApiGenerate
 
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protobufVersion"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
 sourceSets {
     main {
         java {
+            srcDirs "${buildDir}/generated/source/proto/main/grpc"
+            srcDirs "${buildDir}/generated/source/proto/main/java"
             srcDirs "${buildDir}/generated/source/rest/src/main/java"
 
         }

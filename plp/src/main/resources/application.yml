@@ -4,4 +4,5 @@ server:
 api:
   catalogue:
     transport:
-      rest: http://localhost:8881/
+      rest: http://localhost:8881
+      grpc: localhost:8882
